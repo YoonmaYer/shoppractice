@@ -35,3 +35,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### application.properties ###
+/src/main/resources/application.properties
+
+### Item Directory ###
+/Users/mnbg/Downloads/shop/src/main/java/com/shop/shop/item/
