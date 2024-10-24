@@ -40,7 +40,7 @@ class ItemServiceTest {
         List<MultipartFile> multipartFileList = new ArrayList<>();
 
         for(int i=0;i<5;i++){
-            String path = "/Users/mnbg/Downloads/shop/src/main/java/com/shop/shop/item/";
+            String path = "/Users/mnbg/Downloads/shop/src/main/resources/static/itemImg";
             String imageName = "image" + i + ".jpg";
             MockMultipartFile multipartFile =
                     new MockMultipartFile(path, imageName, "image/jpg", new byte[]{1,2,3,4});
