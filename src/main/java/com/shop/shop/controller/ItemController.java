@@ -67,7 +67,7 @@ public class ItemController {
 
         return "item/itemForm";
     }
-/*
+
     @PostMapping(value = "/admin/item/{itemId}")
     public String itemUpdate(@Valid ItemFormDto itemFormDto, BindingResult bindingResult,
                              @RequestParam("itemImgFile") List<MultipartFile> itemImgFileList, Model model){
@@ -89,7 +89,7 @@ public class ItemController {
 
         return "redirect:/";
     }
-
+/*
     @GetMapping(value = {"/admin/items", "/admin/items/{page}"})
     public String itemManage(ItemSearchDto itemSearchDto, @PathVariable("page") Optional<Integer> page, Model model){
 
