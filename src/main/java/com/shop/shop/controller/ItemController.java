@@ -1,10 +1,13 @@
 package com.shop.shop.controller;
 
 import com.shop.shop.dto.ItemFormDto;
+import com.shop.shop.dto.ItemSearchDto;
+import com.shop.shop.entity.Item;
 import com.shop.shop.service.ItemService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -89,7 +93,7 @@ public class ItemController {
 
         return "redirect:/";
     }
-/*
+
     @GetMapping(value = {"/admin/items", "/admin/items/{page}"})
     public String itemManage(ItemSearchDto itemSearchDto, @PathVariable("page") Optional<Integer> page, Model model){
 
@@ -102,7 +106,7 @@ public class ItemController {
 
         return "item/itemMng";
     }
-
+/*
     @GetMapping(value = "/item/{itemId}")
     public String itemDtl(Model model, @PathVariable("itemId") Long itemId){
         ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
