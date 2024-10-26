@@ -1,8 +1,12 @@
 package com.shop.shop.dto;
 
 import com.shop.shop.entity.ItemImg;
+import lombok.Getter;
+import lombok.Setter;
 import org.modelmapper.ModelMapper;
 
+@Getter
+@Setter
 public class ItemImgDto {
 
     private Long id;

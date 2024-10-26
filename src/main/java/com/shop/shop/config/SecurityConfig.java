@@ -37,8 +37,7 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/")
 
                 )
-                .build()
-                ;
+                .build();
     }
 
     @Bean
