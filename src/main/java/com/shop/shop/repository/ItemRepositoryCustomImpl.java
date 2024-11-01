@@ -21,42 +21,42 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
-public class ItemRepositoryCustomImpl implements ItemRepositoryCustom {
+public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
 
     private JPAQueryFactory queryFactory;
 
-    public ItemRepositoryCustomImpl(EntityManager em) {
+    public ItemRepositoryCustomImpl(EntityManager em){
         this.queryFactory = new JPAQueryFactory(em);
     }
 
-    private BooleanExpression searchSellStatusEq(ItemSellStatus searchSellStatus) {
+    private BooleanExpression searchSellStatusEq(ItemSellStatus searchSellStatus){
         return searchSellStatus == null ? null : QItem.item.itemSellStatus.eq(searchSellStatus);
     }
 
-    private BooleanExpression regDtsAfter(String searchDateType) {
+    private BooleanExpression regDtsAfter(String searchDateType){
 
         LocalDateTime dateTime = LocalDateTime.now();
 
-        if (StringUtils.equals("all", searchDateType) || searchDateType == null) {
+        if(StringUtils.equals("all", searchDateType) || searchDateType == null){
             return null;
-        } else if (StringUtils.equals("1d", searchDateType)) {
+        } else if(StringUtils.equals("1d", searchDateType)){
             dateTime = dateTime.minusDays(1);
-        } else if (StringUtils.equals("1w", searchDateType)) {
+        } else if(StringUtils.equals("1w", searchDateType)){
             dateTime = dateTime.minusWeeks(1);
-        } else if (StringUtils.equals("1m", searchDateType)) {
+        } else if(StringUtils.equals("1m", searchDateType)){
             dateTime = dateTime.minusMonths(1);
-        } else if (StringUtils.equals("6m", searchDateType)) {
+        } else if(StringUtils.equals("6m", searchDateType)){
             dateTime = dateTime.minusMonths(6);
         }
 
         return QItem.item.regTime.after(dateTime);
     }
 
-    private BooleanExpression searchByLike(String searchBy, String searchQuery) {
+    private BooleanExpression searchByLike(String searchBy, String searchQuery){
 
-        if (StringUtils.equals("itemNm", searchBy)) {
+        if(StringUtils.equals("itemNm", searchBy)){
             return QItem.item.itemNm.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("createdBy", searchBy)) {
+        } else if(StringUtils.equals("createdBy", searchBy)){
             return QItem.item.createdBy.like("%" + searchQuery + "%");
         }
 
@@ -81,7 +81,8 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom {
                 .where(regDtsAfter(itemSearchDto.getSearchDateType()),
                         searchSellStatusEq(itemSearchDto.getSearchSellStatus()),
                         searchByLike(itemSearchDto.getSearchBy(), itemSearchDto.getSearchQuery()))
-                .fetchOne();
+                .fetchOne()
+                ;
 
         return new PageImpl<>(content, pageable, total);
     }
@@ -119,7 +120,8 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom {
                 .join(itemImg.item, item)
                 .where(itemImg.repimgYn.eq("Y"))
                 .where(itemNmLike(itemSearchDto.getSearchQuery()))
-                .fetchOne();
+                .fetchOne()
+                ;
 
         return new PageImpl<>(content, pageable, total);
     }
